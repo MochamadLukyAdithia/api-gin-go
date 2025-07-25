@@ -10,16 +10,14 @@ import (
 var PORT string
 
 func LoadEnv() {
-    err := godotenv.Load()
-    if err != nil {
-        log.Println("❗️ .env tidak ditemukan, gunakan default env")
-
-        PORT = "8080"
-        return
-    }
+    // Hanya load .env saat di local development
+    _ = godotenv.Load() // abaikan error, karena di production biasanya tidak ada .env
 
     PORT = os.Getenv("PORT")
     if PORT == "" {
+        log.Println("❗️ PORT tidak ditemukan di env, gunakan default :8080")
         PORT = "8080"
+    } else {
+        log.Println("✅ Menggunakan PORT dari environment:", PORT)
     }
 }
