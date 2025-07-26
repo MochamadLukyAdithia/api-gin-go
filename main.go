@@ -11,6 +11,5 @@ func main() {
     config.ConnectDatabase()
     r := gin.Default()
     routes.SetupRoutes(r)
-
     r.Run(":" + config.PORT)
 }

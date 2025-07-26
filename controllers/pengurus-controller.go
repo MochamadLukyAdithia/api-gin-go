@@ -23,11 +23,9 @@ func CreatePengurus(c *gin.Context) {
         utils.Error(c, http.StatusBadRequest, err.Error())
         return
     }
-
     if err := config.DB.Create(&pengurus).Error; err != nil {
         utils.Error(c, http.StatusInternalServerError, err.Error())
         return
     }
-
     utils.Success(c, pengurus)
 }
